@@ -60,12 +60,12 @@ class PostListViewModel(private val repository: PostsRepository) : ViewModel() {
                                     0, MyStoryItemViewModel(
                                         Story(
                                             id = 421,
-                                            userName = "Add story",
+                                            userName = "Your Story",
                                             storyImgUrl = "https://i.ytimg.com/vi/CKhwQdpCVI4/maxresdefault.jpg"
                                         )
                                     )
                                 )
-                                addAll(repository.getAllStories().map { StoryItemViewModel(it) })
+                                addAll(repository.getAllStories().map { StoryItemViewModel(it) }.shuffled())
                             }
                         )
                     )

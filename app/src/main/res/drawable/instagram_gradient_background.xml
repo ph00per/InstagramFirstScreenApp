@@ -3,10 +3,10 @@
     <item>
         <shape xmlns:android="http://schemas.android.com/apk/res/android"
             android:shape="ring"
-            android:thickness="6dp"
+            android:thickness="7dp"
             android:useLevel="false">
             <gradient
-                android:angle="270"
+                android:angle="135"
                 android:centerColor="#fa95a0"
                 android:endColor="#7118f7"
                 android:startColor="#fe4d11" />
@@ -16,7 +16,7 @@
     <item>
         <shape
             android:shape="ring"
-            android:thickness="4dp"
+            android:thickness="5dp"
             android:useLevel="false">
             <solid android:color="@color/color_on_primary" />
 
