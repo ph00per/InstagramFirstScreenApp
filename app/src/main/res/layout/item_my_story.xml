@@ -4,12 +4,12 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="4dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/story_img"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:padding="6dp"
         android:scaleType="centerCrop"
         app:civ_border_color="@color/color_primary"
