@@ -1,4 +1,4 @@
-package com.ph00.instagramfirstpageapp.ui.adapters
+package com.ph00.instagramfirstpageapp.ui.adapters.ad
 
 import com.example.delegateadapter.delegate.KDelegateAdapter
 import com.ph00.instagramfirstpageapp.R

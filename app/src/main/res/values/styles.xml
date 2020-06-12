@@ -11,5 +11,9 @@
         <item name="android:statusBarColor">@color/color_on_primary</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
+    <style name="circleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 
 </resources>

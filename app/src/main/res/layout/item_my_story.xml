@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/story_img"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:padding="6dp"
+        android:scaleType="centerCrop"
+        app:civ_border_color="@color/color_primary"
+        app:civ_border_width="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_add"
+        app:layout_constraintBottom_toBottomOf="@id/story_img"
+        app:layout_constraintEnd_toEndOf="@id/story_img"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="@id/story_img"
+        app:layout_constraintTop_toTopOf="@id/story_img"
+        app:layout_constraintVertical_bias="0.95" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/story_username_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="2dp"
+        android:text="psdfsfsa412124"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/story_img" />
+</androidx.constraintlayout.widget.ConstraintLayout>

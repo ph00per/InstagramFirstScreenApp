@@ -1,4 +1,4 @@
-package com.ph00.instagramfirstpageapp.ui.adapters
+package com.ph00.instagramfirstpageapp.ui.adapters.post
 
 import com.example.delegateadapter.delegate.diff.IComparableItem
 import com.ph00.instagramfirstpageapp.data.models.Post

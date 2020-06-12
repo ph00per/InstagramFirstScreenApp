@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="ring"
+            android:thickness="6dp"
+            android:useLevel="false">
+            <gradient
+                android:angle="270"
+                android:centerColor="#fa95a0"
+                android:endColor="#7118f7"
+                android:startColor="#fe4d11" />
+
+        </shape>
+    </item>
+    <item>
+        <shape
+            android:shape="ring"
+            android:thickness="4dp"
+            android:useLevel="false">
+            <solid android:color="@color/color_on_primary" />
+
+        </shape>
+    </item>
+    <item>
+        <shape
+            android:shape="ring"
+            android:thickness="1.6dp"
+            android:useLevel="false"
+            >
+            <solid android:color="@color/color_primary" />
+            <padding
+                android:bottom="9dp"
+                android:left="9dp"
+                android:right="9dp"
+                android:top="9dp" />
+        </shape>
+    </item>
+
+</layer-list>

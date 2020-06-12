@@ -2,8 +2,6 @@ package com.ph00.instagramfirstpageapp.di
 
 import com.ph00.instagramfirstpageapp.data.api.InstagramFakeApi
 import com.ph00.instagramfirstpageapp.data.repositories.PostsRepository
-import com.ph00.instagramfirstpageapp.ui.adapters.AdItemDelegateAdapter
-import com.ph00.instagramfirstpageapp.ui.adapters.PostItemDelegateAdapter
 import com.ph00.instagramfirstpageapp.utils.Constants.Companion.BASE_URL
 import com.ph00.instagramfirstpageapp.viewmodels.PostListViewModel
 import com.squareup.picasso.Picasso

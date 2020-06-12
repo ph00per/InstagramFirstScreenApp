@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.delegateadapter.delegate.diff.DiffUtilCompositeAdapter
+import com.google.android.material.snackbar.Snackbar
 import com.ph00.instagramfirstpageapp.R
-import com.ph00.instagramfirstpageapp.ui.adapters.AdItemDelegateAdapter
-import com.ph00.instagramfirstpageapp.ui.adapters.PostItemDelegateAdapter
+import com.ph00.instagramfirstpageapp.ui.adapters.ad.AdItemDelegateAdapter
+import com.ph00.instagramfirstpageapp.ui.adapters.post.PostItemDelegateAdapter
+import com.ph00.instagramfirstpageapp.ui.adapters.stories.StoriesItemDelegateAdapter
+import com.ph00.instagramfirstpageapp.ui.adapters.stories.story.StoryItemDelegateAdapter
+import com.ph00.instagramfirstpageapp.ui.adapters.stories.your_story.MyStoryItemDelegateAdapter
 import com.ph00.instagramfirstpageapp.viewmodels.PostListViewModel
 import kotlinx.android.synthetic.main.fragment_posts.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -23,7 +26,16 @@ class PostListFragment : Fragment() {
     private val diffAdapter by lazy {
         DiffUtilCompositeAdapter.Builder()
             .add(PostItemDelegateAdapter())
-            .add(AdItemDelegateAdapter { Toast.makeText(activity, it, Toast.LENGTH_SHORT).show() })
+            .add(AdItemDelegateAdapter {
+                showText(it)
+            }).add(
+                StoriesItemDelegateAdapter(
+                    DiffUtilCompositeAdapter.Builder().add(StoryItemDelegateAdapter {
+                        showText(it)
+                    }).add(MyStoryItemDelegateAdapter { showText(it) }).build(),
+                    LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                )
+            )
             .build()
     }
 
@@ -40,7 +52,7 @@ class PostListFragment : Fragment() {
         viewModel.event.observe(viewLifecycleOwner, Observer {
             it.getContentIfNotHandled()?.let { event ->
                 if (event == PostListViewModel.ViewEvent.ERROR) {
-                    Toast.makeText(activity, "Ошибка!", Toast.LENGTH_SHORT).show()
+                    showText("Ошибка!")
                 }
             }
         })
@@ -61,5 +73,9 @@ class PostListFragment : Fragment() {
         viewModel.contentList.observe(viewLifecycleOwner, Observer {
             diffAdapter.swapData(it)
         })
+    }
+
+    private fun showText(msg: String) {
+        Snackbar.make(main_layout, msg, Snackbar.LENGTH_SHORT).show()
     }
 }

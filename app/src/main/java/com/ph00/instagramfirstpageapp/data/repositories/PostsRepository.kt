@@ -7,4 +7,6 @@ class PostsRepository(private val instApi: InstagramFakeApi) {
     suspend fun getAllPosts() = instApi.getAllPosts()
 
     suspend fun getAllAds() = instApi.getAllAds()
+
+    suspend fun getAllStories() = instApi.getAllStories()
 }

@@ -6,9 +6,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.delegateadapter.delegate.diff.IComparableItem
+import com.ph00.instagramfirstpageapp.data.models.Story
 import com.ph00.instagramfirstpageapp.data.repositories.PostsRepository
-import com.ph00.instagramfirstpageapp.ui.adapters.AdItemViewModel
-import com.ph00.instagramfirstpageapp.ui.adapters.PostItemViewModel
+import com.ph00.instagramfirstpageapp.ui.adapters.ad.AdItemViewModel
+import com.ph00.instagramfirstpageapp.ui.adapters.post.PostItemViewModel
+import com.ph00.instagramfirstpageapp.ui.adapters.stories.StoriesItemViewModel
+import com.ph00.instagramfirstpageapp.ui.adapters.stories.story.StoryItemViewModel
+import com.ph00.instagramfirstpageapp.ui.adapters.stories.your_story.MyStoryItemViewModel
 import com.ph00.instagramfirstpageapp.utils.Event
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.Dispatchers.Main
@@ -32,14 +36,39 @@ class PostListViewModel(private val repository: PostsRepository) : ViewModel() {
     }
 
     private fun loadContent() {
-        Log.d("Loading content", "Loading content")
+        //TODO:: refactor pls :(
         _state.value = ViewState.LOADING
         viewModelScope.launch(Default) {
             try {
                 _contentList.postValue(mutableListOf<IComparableItem>().apply {
-                    addAll(repository.getAllPosts().map { PostItemViewModel(it) }.shuffled())
-                    addAll(repository.getAllAds().map { AdItemViewModel(it) }.shuffled())
+                    addAll(repository.getAllPosts().map {
+                        PostItemViewModel(
+                            it
+                        )
+                    }.shuffled())
+                    addAll(repository.getAllAds().map {
+                        AdItemViewModel(
+                            it
+                        )
+                    }.shuffled())
                     shuffle()
+                    add(
+                        0,
+                        StoriesItemViewModel(
+                            mutableListOf<IComparableItem>().apply {
+                                add(
+                                    0, MyStoryItemViewModel(
+                                        Story(
+                                            id = 421,
+                                            userName = "Add story",
+                                            storyImgUrl = "https://i.ytimg.com/vi/CKhwQdpCVI4/maxresdefault.jpg"
+                                        )
+                                    )
+                                )
+                                addAll(repository.getAllStories().map { StoryItemViewModel(it) })
+                            }
+                        )
+                    )
                 })
                 _state.postValue(ViewState.DEFAULT)
             } catch (e: Exception) {
