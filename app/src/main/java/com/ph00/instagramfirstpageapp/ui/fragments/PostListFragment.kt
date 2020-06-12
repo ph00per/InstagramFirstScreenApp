@@ -26,13 +26,14 @@ class PostListFragment : Fragment() {
     private val diffAdapter by lazy {
         DiffUtilCompositeAdapter.Builder()
             .add(PostItemDelegateAdapter())
-            .add(AdItemDelegateAdapter {
-                showText(it)
-            }).add(
+            .add(AdItemDelegateAdapter { showText(it) })
+            .add(
                 StoriesItemDelegateAdapter(
-                    DiffUtilCompositeAdapter.Builder().add(StoryItemDelegateAdapter {
-                        showText(it)
-                    }).add(MyStoryItemDelegateAdapter { showText(it) }).build(),
+                    diffAdapter = DiffUtilCompositeAdapter.Builder()
+                        .add(StoryItemDelegateAdapter { showText(it) })
+                        .add(MyStoryItemDelegateAdapter { showText(it) })
+                        .build(),
+                    rvLayoutManager =
                     LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 )
             )
