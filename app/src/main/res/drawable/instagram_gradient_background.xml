@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
-        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+        <shape
             android:shape="ring"
             android:thickness="7dp"
             android:useLevel="false">
             <gradient
-                android:angle="135"
-                android:centerColor="#fa95a0"
-                android:endColor="#7118f7"
-                android:startColor="#fe4d11" />
+                android:angle="225"
+                android:endColor="#fdb460"
+                android:startColor="#c00086" />
 
         </shape>
     </item>
     <item>
         <shape
             android:shape="ring"
-            android:thickness="5dp"
+            android:thickness="4.5dp"
             android:useLevel="false">
             <solid android:color="@color/color_on_primary" />
 
@@ -29,11 +28,7 @@
             android:useLevel="false"
             >
             <solid android:color="@color/color_primary" />
-            <padding
-                android:bottom="9dp"
-                android:left="9dp"
-                android:right="9dp"
-                android:top="9dp" />
+
         </shape>
     </item>
 

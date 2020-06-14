@@ -2,9 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingBottom="10dp">
 
     <View
+        android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/color_secondary"
@@ -16,34 +18,33 @@
         android:layout_width="31dp"
         android:layout_height="31dp"
         android:layout_marginStart="14dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="14dp"
-        android:layout_marginBottom="12dp"
         app:civ_border_color="@color/color_primary"
         app:civ_border_width="0.3dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/divider" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/user_name_text"
+        android:id="@+id/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
+        android:layout_marginStart="8dp"
         android:fontFamily="@font/roboto_medium"
         android:text="MyUserName"
-        android:textColor="#000000"
+        android:textColor="@color/color_primary_variant"
         android:textSize="13sp"
         app:layout_constraintStart_toEndOf="@id/user_profile_image"
         app:layout_constraintTop_toTopOf="@id/user_profile_image" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/user_location_text"
+        android:id="@+id/user_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Moscow, Russia"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/user_profile_image"
-        app:layout_constraintStart_toStartOf="@id/user_name_text" />
+        app:layout_constraintStart_toStartOf="@id/user_name" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -63,27 +64,102 @@
         android:adjustViewBounds="true"
         app:layout_constraintTop_toBottomOf="@id/user_profile_image" />
 
-    <com.google.android.material.button.MaterialButton
+    <ImageView
         android:id="@+id/like_button"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_margin="14dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="6dp"
         android:background="@drawable/ic_favourite_outlined"
-        android:stateListAnimator="@drawable/like_anim"
-        app:backgroundTint="@color/color_error"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/post_image" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/likes_count_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="521"
-        app:layout_constraintBottom_toBottomOf="@id/like_button"
+    <ImageView
+        android:id="@+id/comments_button"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="12dp"
+        android:background="@drawable/ic_comment"
         app:layout_constraintStart_toEndOf="@id/like_button"
         app:layout_constraintTop_toTopOf="@id/like_button" />
+
+    <ImageView
+        android:id="@+id/bookmark_button"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/ic_bookmark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/like_button" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/likes_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="11"
+        android:textColor="@color/color_primary_variant"
+        app:layout_constraintStart_toStartOf="@id/like_button"
+        app:layout_constraintTop_toBottomOf="@id/like_button" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/likes_count_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="likes"
+        android:textColor="@color/color_primary_variant"
+        app:layout_constraintStart_toEndOf="@id/likes_count"
+        app:layout_constraintTop_toBottomOf="@id/like_button" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/first_comment_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/roboto_medium"
+        android:textColor="@color/color_primary_variant"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/likes_count"
+        app:layout_constraintTop_toBottomOf="@id/likes_count" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/first_comment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="4dp"
+        android:textColor="@color/color_primary_variant"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/first_comment_username"
+        app:layout_constraintTop_toTopOf="@+id/first_comment_username" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/second_comment_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/roboto_medium"
+        android:textColor="@color/color_primary_variant"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/first_comment_username"
+        app:layout_constraintTop_toBottomOf="@id/first_comment_username" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/second_comment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:textColor="@color/color_primary_variant"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/second_comment_username"
+        app:layout_constraintTop_toTopOf="@id/second_comment_username" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

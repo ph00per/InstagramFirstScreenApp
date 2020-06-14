@@ -1,5 +1,6 @@
 package com.ph00.instagramfirstpageapp.ui.adapters.post
 
+import android.view.View
 import com.example.delegateadapter.delegate.KDelegateAdapter
 import com.ph00.instagramfirstpageapp.R
 import com.squareup.picasso.Picasso
@@ -8,10 +9,9 @@ import org.koin.core.KoinComponent
 import org.koin.core.inject
 
 
-class PostItemDelegateAdapter :
+open class PostItemDelegateAdapter :
     KDelegateAdapter<PostItemViewModel>(), KoinComponent {
     private val picasso by inject<Picasso>()
-    private val likedPosts = mutableListOf<Int>()
 
     override fun getLayoutId() = R.layout.item_post
 
@@ -20,32 +20,45 @@ class PostItemDelegateAdapter :
 
     override fun onBind(item: PostItemViewModel, viewHolder: KViewHolder) {
         with(viewHolder) {
-            user_name_text.text = item.post.userName
-            user_location_text.text = item.post.userLocation
+            user_name.text = item.post.userName
+            user_location.text = item.post.userLocation
             picasso.load(item.post.imageUrl).into(post_image)
             picasso.load(item.post.userProfileImageUrl).into(user_profile_image)
+            likes_count.text = item.post.likes.toString()
 
-            if (likedPosts.contains(item.post.id)) {
-                like_button.setBackgroundResource(R.drawable.ic_favourite_filled)
-                likes_count_text.text = (item.post.likes + 1).toString()
-            } else {
-                like_button.setBackgroundResource(R.drawable.ic_favourite_outlined)
-                likes_count_text.text = (item.post.likes).toString()
-            }
-
-            like_button.setOnClickListener {
-                if (likedPosts.contains(item.post.id)) {
-                    like_button.setBackgroundResource(R.drawable.ic_favourite_outlined)
-                    likes_count_text.text = (item.post.likes).toString()
-                    likedPosts.remove(item.post.id)
-                } else {
-                    like_button.setBackgroundResource(R.drawable.ic_favourite_filled)
-                    likes_count_text.text = (item.post.likes + 1).toString()
-                    likedPosts.add(item.post.id)
+            item.post.comments?.run {
+                getOrNull(0)?.let { comment ->
+                    first_comment_username.apply {
+                        text = comment.userName
+                        visibility = View.VISIBLE
+                    }
+                    first_comment.apply {
+                        text = comment.comment
+                        visibility = View.VISIBLE
+                    }
+                }
+                getOrNull(1)?.let { comment ->
+                    second_comment_username.apply {
+                        text = comment.userName
+                        visibility = View.VISIBLE
+                    }
+                    second_comment.apply {
+                        text = comment.comment
+                        visibility = View.VISIBLE
+                    }
                 }
             }
         }
     }
 
-
+    override fun onRecycled(holder: KViewHolder) {
+        super.onRecycled(holder)
+        with(holder) {
+            first_comment_username.visibility = View.GONE
+            first_comment.visibility = View.GONE
+            second_comment_username.visibility = View.GONE
+            second_comment.visibility = View.GONE
+        }
+    }
 }
+

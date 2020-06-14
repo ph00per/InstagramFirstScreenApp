@@ -8,5 +8,6 @@ data class Post(
     @field:Json(name = "userProfileImageUrl") val userProfileImageUrl: String,
     @field:Json(name = "imageUrl") val imageUrl: String,
     @field:Json(name = "userLocation") val userLocation: String,
-    @field:Json(name = "likesCount") val likes: Int
+    @field:Json(name = "likesCount") val likes: Int,
+    @field:Json(name = "comments") val comments: List<Comment>?
 )
