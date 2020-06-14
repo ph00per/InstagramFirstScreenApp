@@ -13,6 +13,6 @@ interface InstagramFakeApi {
     @GET("b/5ee25d6d655d87580c483e52/latest")
     suspend fun getAllAds(): List<Ad>
 
-    @GET("https://api.jsonbin.io/b/5ee358321f9e4e57881c3ccc/latest")
+    @GET("b/5ee358321f9e4e57881c3ccc/latest")
     suspend fun getAllStories(): List<Story>
 }
