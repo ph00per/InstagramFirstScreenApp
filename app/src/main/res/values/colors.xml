@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_primary">#e0e0e0</color>
-    <color name="color_primary_variant">#272727</color>
-    <color name="color_secondary">#f2f2f2</color>
+    <color name="color_primary">#272727</color>
+    <color name="color_primary_variant">#e0e0e0</color>
+    <color name="color_secondary">#4C4C4C</color>
+    <color name="color_secondary_variant">#8C8C8C</color>
     <color name="color_on_primary">#FFFFFF</color>
     <color name="color_error">#F44336</color>
     <color name="color_on_error">#FFFFFF</color>
